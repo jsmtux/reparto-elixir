@@ -1,4 +1,5 @@
 defmodule RepartoWeb.Router do
+  alias RepartoWeb.ProductController
   use RepartoWeb, :router
 
   pipeline :browser do
@@ -17,7 +18,12 @@ defmodule RepartoWeb.Router do
   scope "/", RepartoWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    resources "/companies", CompanyController
+  end
+
+  scope "/companies/:company_id" do
+    pipe_through :browser
+    resources "/products", ProductController
   end
 
   # Other scopes may use custom stacks.

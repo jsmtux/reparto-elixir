@@ -1,0 +1,8 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Edit Company {@company.id}
+    <:subtitle>Use this form to manage company records in your database.</:subtitle>
+  </.header>
+
+  <.company_form changeset={@changeset} action={~p"/companies/#{@company}"} return_to={~p"/companies"} />
+</Layouts.app>
