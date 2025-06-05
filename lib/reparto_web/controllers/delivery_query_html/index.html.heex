@@ -1,0 +1,19 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Showing Routes close to: {@lat}, {@lon}
+  </.header>
+  <div style="height: 500px;" id="map"></div>
+  <script>
+    var map = L.map('map').setView([<%= @lat %>, <%= @lon %>], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    var marker = L.marker([<%= @lat %>, <%= @lon %>]).addTo(map);
+  </script>
+  <h1>Found routes:</h1>
+
+  <.table id="routes" rows={@routes} row_click={&JS.navigate(~p"/companies/1/routes/#{&1}")}>
+    <:col :let={route} label="Day of week">{route.day_of_week}</:col>
+  </.table>
+</Layouts.app>

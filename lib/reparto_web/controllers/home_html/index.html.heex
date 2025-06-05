@@ -1,0 +1,13 @@
+<Layouts.app flash={@flash}>
+    <div class="max-w-m items-center gap-x-4 rounded-xl p-6 outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+        <div class="text-xl font-medium text-black dark:text-white">Reparto</div>
+        <p class="text-gray-500 dark:text-gray-400">Your web app for local van routes</p>
+    </div>
+    <div class="max-w-m items-center gap-x-4 rounded-xl p-6 outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+        <div class="text-xl font-medium text-black dark:text-white">Search for local Deliveries</div>
+        <.coord_form coords={@coords} action={~p"/delivery_query"} />
+    </div>
+    <a href={~p"/companies"} class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
+        Admin area
+    </a>
+</Layouts.app>

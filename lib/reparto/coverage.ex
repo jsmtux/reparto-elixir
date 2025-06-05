@@ -24,6 +24,11 @@ defmodule Reparto.Coverage do
     |> Repo.all
   end
 
+  def list_routes_close_to(%Geo.Point{} = _point) do
+    Route
+    |> Repo.all
+  end
+
   @doc """
   Gets a single route.
 

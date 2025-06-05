@@ -1,7 +1,6 @@
 defmodule RepartoWeb.ProductController do
   use RepartoWeb, :controller
 
-  alias Reparto.Directory
   alias Reparto.Catalog
   alias Reparto.Catalog.Product
 

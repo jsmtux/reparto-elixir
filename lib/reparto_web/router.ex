@@ -1,7 +1,8 @@
 defmodule RepartoWeb.Router do
   use RepartoWeb, :router
-  alias RepartoWeb.ProductController
+
   alias RepartoWeb.RouteController
+  alias RepartoWeb.ProductController
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -23,6 +24,8 @@ defmodule RepartoWeb.Router do
   scope "/", RepartoWeb do
     pipe_through :browser
 
+    get "/", HomeController, :index
+    post "/delivery_query", DeliveryQueryController, :create
     resources "/companies", CompanyController
   end
 
