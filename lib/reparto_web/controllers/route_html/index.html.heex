@@ -1,0 +1,25 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Listing Routes
+    <:actions>
+      <.button href={~p"/companies/#{@current_company}/routes/new"}>
+        <.icon name="hero-plus" /> New Route
+      </.button>
+    </:actions>
+  </.header>
+
+  <.table id="routes" rows={@routes} row_click={&JS.navigate(~p"/companies/#{@current_company}/routes/#{&1}")}>
+    <:col :let={route} label="Day of week">{route.day_of_week}</:col>
+    <:action :let={route}>
+      <div class="sr-only">
+        <.link navigate={~p"/companies/#{@current_company}/routes/#{route}"}>Show</.link>
+      </div>
+      <.link navigate={~p"/companies/#{@current_company}/routes/#{route}/edit"}>Edit</.link>
+    </:action>
+    <:action :let={route}>
+      <.link href={~p"/companies/#{@current_company}/routes/#{route}"} method="delete" data-confirm="Are you sure?">
+        Delete
+      </.link>
+    </:action>
+  </.table>
+</Layouts.app>

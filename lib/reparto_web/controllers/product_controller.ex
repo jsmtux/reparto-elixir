@@ -5,13 +5,6 @@ defmodule RepartoWeb.ProductController do
   alias Reparto.Catalog
   alias Reparto.Catalog.Product
 
-  plug :put_company
-
-  defp put_company(conn, _opts) do
-    current_company = Directory.get_company!(conn.params["company_id"])
-    assign(conn, :current_company, current_company)
-  end
-
   def index(conn, _params) do
     %{current_company: current_company} = conn.assigns
     products = Catalog.list_products(current_company)

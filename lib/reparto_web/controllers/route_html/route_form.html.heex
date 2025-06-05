@@ -1,0 +1,8 @@
+<.form :let={f} for={@changeset} action={@action}>
+  <.input field={f[:day_of_week]} type="number" label="Day of week" />
+  <.input field={f[:points_text]} type="text" label="GeoJSON text" />
+  <footer>
+    <.button variant="primary">Save Route</.button>
+    <.button :if={@return_to} href={@return_to}>Cancel</.button>
+  </footer>
+</.form>

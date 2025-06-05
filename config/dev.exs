@@ -6,6 +6,7 @@ config :reparto, Reparto.Repo,
   password: "postgres",
   hostname: "localhost",
   database: "reparto_dev",
+  types: Reparto.PostgresTypes,
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

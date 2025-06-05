@@ -1,6 +1,7 @@
 defmodule RepartoWeb.Router do
-  alias RepartoWeb.ProductController
   use RepartoWeb, :router
+  alias RepartoWeb.ProductController
+  alias RepartoWeb.RouteController
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -9,6 +10,10 @@ defmodule RepartoWeb.Router do
     plug :put_root_layout, html: {RepartoWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+  end
+
+  pipeline :under_company do
+    plug :put_company
   end
 
   pipeline :api do
@@ -23,7 +28,9 @@ defmodule RepartoWeb.Router do
 
   scope "/companies/:company_id" do
     pipe_through :browser
+    pipe_through :put_company
     resources "/products", ProductController
+    resources "/routes", RouteController
   end
 
   # Other scopes may use custom stacks.
@@ -46,5 +53,11 @@ defmodule RepartoWeb.Router do
       live_dashboard "/dashboard", metrics: RepartoWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+  end
+
+  defp put_company(conn, _opts) do
+    alias Reparto.Directory
+    current_company = Directory.get_company!(conn.params["company_id"])
+    assign(conn, :current_company, current_company)
   end
 end

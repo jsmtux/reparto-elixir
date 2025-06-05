@@ -1,0 +1,31 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Route {@route.id}
+    <:subtitle>This is a route record from your database.</:subtitle>
+    <:actions>
+      <.button navigate={~p"/companies/#{@current_company}/routes"}>
+        <.icon name="hero-arrow-left" />
+      </.button>
+      <.button variant="primary" navigate={~p"/companies/#{@current_company}/routes/#{@route}/edit?return_to=show"}>
+        <.icon name="hero-pencil-square" /> Edit route
+      </.button>
+    </:actions>
+  </.header>
+
+  <.list>
+    <:item title="Day of week">{@route.day_of_week}</:item>
+  </.list>
+
+  <div style="height: 500px;" id="map"></div>
+
+  <script>
+    var map = L.map('map').setView([43.536034592350546, -7.058951614254369], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    const geojson_str = '<%= raw @geojson_string %>'
+    const geojson_feature = JSON.parse(geojson_str)
+    L.geoJSON(geojson_feature).addTo(map);
+  </script>
+</Layouts.app>

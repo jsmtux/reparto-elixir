@@ -1,0 +1,8 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Edit Route {@route.id}
+    <:subtitle>Use this form to manage route records in your database.</:subtitle>
+  </.header>
+
+  <.route_form changeset={@changeset} action={~p"/companies/#{@current_company}/routes/#{@route}"} return_to={~p"/companies/#{@current_company}/routes"} />
+</Layouts.app>

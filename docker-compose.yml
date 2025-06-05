@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:15
+    image: "postgis/postgis:latest"
     container_name: postgres
     volumes:
       - db:/var/lib/postgresql/data
