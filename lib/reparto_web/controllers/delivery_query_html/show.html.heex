@@ -1,0 +1,29 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    This is a route for {@company.name} on {@day_of_week}.
+  </.header>
+
+  <div style="height: 500px;" id="map"></div>
+
+  <.header>
+    The company brings the following products:
+  </.header>
+
+  <.table id="products" rows={@products}>
+    <:col :let={product} label="Name">{product.name}</:col>
+    <:col :let={product} label="Description">{product.description}</:col>
+    <:col :let={product} label="Image">{product.image}</:col>
+    <:col :let={product} label="Price">{product.price}</:col>
+  </.table>
+
+  <script>
+    var map = L.map('map').setView([43.536034592350546, -7.058951614254369], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    const geojson_str = '<%= raw @geojson_string %>'
+    const geojson_feature = JSON.parse(geojson_str)
+    L.geoJSON(geojson_feature).addTo(map);
+  </script>
+</Layouts.app>

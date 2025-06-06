@@ -17,7 +17,7 @@
     <:col :let={route} label="Day of week">{route.day_of_week}</:col>
     <:col :let={route} label="Company">{(route.company).name}</:col>
     <:action :let={route}>
-      <.link class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href={~p"/companies/#{route.company}/products"}>
+      <.link class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href={~p"/show_delivery/#{route.company}/#{route}"}>
         Visit
       </.link>
     </:action>

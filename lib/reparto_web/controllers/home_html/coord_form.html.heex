@@ -1,6 +1,6 @@
 <.form :let={f} for={@coords} action={@action}>
-  <.input field={f[:lat]} type="number" label="Lat:" />
-  <.input field={f[:lon]} type="number" label="Lon:" />
+  <.input field={f[:lat]} type="number" step="any" label="Lat:" />
+  <.input field={f[:lon]} type="number" step="any" label="Lon:" />
   <footer>
     <.button variant="primary">Look for Deliveries</.button>
   </footer>
