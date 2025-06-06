@@ -13,7 +13,13 @@
   </script>
   <h1>Found routes:</h1>
 
-  <.table id="routes" rows={@routes} row_click={&JS.navigate(~p"/companies/1/routes/#{&1}")}>
+  <.table id="routes" rows={@routes}>
     <:col :let={route} label="Day of week">{route.day_of_week}</:col>
+    <:col :let={route} label="Company">{(route.company).name}</:col>
+    <:action :let={route}>
+      <.link class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href={~p"/companies/#{route.company}/products"}>
+        Visit
+      </.link>
+    </:action>
   </.table>
 </Layouts.app>
