@@ -4,6 +4,7 @@ defmodule Reparto.Coverage do
   """
 
   import Ecto.Query, warn: false
+  import Geo.PostGIS
   alias Reparto.Repo
 
   alias Reparto.Coverage.Route
@@ -24,9 +25,10 @@ defmodule Reparto.Coverage do
     |> Repo.all
   end
 
-  def list_routes_close_to(%Geo.Point{} = _point) do
-    Route
-    |> Repo.all
+  @spec list_routes_close_to(Geo.Point.t()) :: any()
+  def list_routes_close_to(%Geo.Point{} = point) do
+    query = from route in Route, where: st_dwithin_in_meters(route.points, ^point, ^5000)
+    Repo.all(query)
   end
 
   @doc """
